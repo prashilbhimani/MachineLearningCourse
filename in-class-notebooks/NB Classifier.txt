@@ -1,0 +1,62 @@
+2 models
+    1. Generative model - Joint relationship between x and y + assumptions on data -NB Classifier
+    2. Discriminative model - Only conditional probablity - Logistic Regression
+
+Basic of Probability:
+    P(A,B) is probability of A and B occuring simultaneously
+    P(A,B) = P(B) P(A|B) = P(A) P(B|A)
+    P(A,B,C)=P(A) P(B|A) P(C|A,B)
+    and so on.. (Chain rule)
+    
+    
+    Marginal Probability:
+        P(V)= SUM(p(V,C=c))=SUM(P(c)P(V|c))
+    
+    Bayes Rule:
+    P(Y|X) = P(X|Y)P(Y)/P(X)
+    
+    Here P(X) is usually Marginal Probability - See cancer example
+
+
+NB Classifier:
+    Simple but efficient.
+    One very strong assumption - Features of X are independent given the class y
+    High bias means very rigid towards certain bias. Not flexible.
+    Easy to do and one of the initial classifier used normally.
+    P(x,y)
+    P(x,y)=P(x|y)P(y)
+    
+    
+    P(y|x) = P(x|y) x P(y) / P(x)
+    
+        P(y|x) = Posterior
+        P(x|y) = Class condition/ likelihood. Has Joint probability
+        P(x) = Evidence. Also has joint probability
+        P(y) = Prior Probability
+    
+    
+    Here x={feature1, feature2, feature3} etc...
+    Here the assumption is that the features are independent. THIS IS A STRONG ASSUMPTION. Not true most the time. "Peanut Butter" and stuff
+    
+    Here we cannot make assumption about P(x) as it is a very strong assumption. Stronger than we are already making.
+    But we dont need to calculate that P(x).
+    
+    So we will only see numerator. So it is not probability now.
+    
+    You find the (fake)Probability for all Y (Spam/Ham or stuff) and choose which (fake) probablity is maximum and that is your classsifier.
+    
+    What if you find a feature with 0 probability for one of the Y (work in spam)
+    
+    So we do additive smoothing:
+        p(w|c) = (p(w)+1)/(total number of words+ number of unique words)
+       
+    Laplace Smoothing:
+        Do additive smoothing for the Prior Probailities also so if your particular class has no training data(shitty training data) then it 
+    
+    When number of features are high and individual probabilities are small the multilication leads to very small number which may go below the computer lower limit. SO we take log of individual probabilities and add and as it is monatically increasing it wont change the stuff
+    
+    
+    
+    
+ 
+    

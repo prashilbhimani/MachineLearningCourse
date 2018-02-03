@@ -1,0 +1,79 @@
+Logistic Regression:
+    Does not make strong assumptions 
+    Works on small dataset
+    Very difficult to manage outliers
+    Does induce a confidence measure
+    
+    
+    Always have 1 in the feature vector for the bias
+    So we take sigm(w^T.x)
+    w is the weights for each feature(OR slope)
+    x is the feature vector with the 1 in line 8
+    
+    We do not calculate the P for all in binary classification we just calculate it for P(y=1|x,w) and have a decision boundary
+    
+    (VECTORS ARE ALWAYS VERTICAL STUFF)
+    
+    We can take x as binary(Present or not) or bag of words approch has how many times the word occured
+    If a training data has no features then only bias remains and hence it will depends on how the bias is
+    
+    Odds for an event is p/(1-p)
+    Odds of a sigmoid function is the exp of the same thing
+    
+    p(y=1|w,x) = sigm(W^t.X)
+    p(y=0|w,x) = 1-sigm(W^t.X)
+    
+    How to calculate weights:
+        w is kind of variable here. Hence we have to find the best w using the training examples
+        We call this Maximum likelihood estimation
+        In short we estimate w such way that we try to maximize the correct output for the training examples for the given w
+        
+        Likelihood(L):
+        L(w)= p(y1,y2,y3...ym|x1,x2,x3...xm;w)
+            = MultiplicativeSum(p(yi|xi;w))
+          Here p is less than one. Hence tooooo small number after multiplication
+          Hence we take negative log-likelihood
+          NLL(w)=-log(L(w))
+          So now we will minimize due to negative sign
+          This means GRADIENT DESCENT
+          Both L(w) and NLL(w) is convex. Hence only 1 global minimum
+          Gradient is the direction to go towards the top fast. So we go the opposite way
+          To find gradient we do derivatives
+          Partial Derivate (PD)
+          PD(NLL(w))/PD(wk)= SUM((sigm(w^t.xi)-yi)*xik) (All data first then 1 update)
+          
+          Now shift to Stochastic Gradient descent (1 data at a time)
+              Not a bad approximation
+              Random shuffling for bias
+              
+          
+          Then shift to Mini-Batch Stochastic Gradient descent
+              Take as many as you can fit in memory
+              So a bit better
+          
+          Choosing learning rate is imp
+              1. Take many and choose one
+              2. Gradually reduce the learning rate
+              3. Advanced tech uses different learning rate for different features
+             
+          What should be initial w
+              1. Usually w=0 is safe when data is not colinear
+              2. Maybe some context info
+          
+          When should you stop:
+              1. Threshold for NLL (On holdout set / test dataset?)
+              2. When error is small (Works well for convex set)
+              3. Satisfactory results
+        
+          Gradient descent blows up the coefficent(other than bias). This is overfitting(kind of). So regularization penalizes it.
+          Regularization is basically adding the magnitude of the weight x constant to the NLL(Or the Loss function we are minimizing).
+          So larger the magnitude will make the loss function bigger which it does not like.
+          
+          We also have to normalize the magnitute so it does not attack coefficient of a particular feature.
+          
+        
+Generative vs Discriminative
+    Generative models are better when assumptions are correct
+    Discriminative are more robust
+    
+    
